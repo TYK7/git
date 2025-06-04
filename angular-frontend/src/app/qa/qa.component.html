@@ -1,0 +1,24 @@
+<div class="qa-container">
+  <h2>Ask a Question About the Document</h2>
+
+  <div class="input-area">
+    <textarea [(ngModel)]="questionText" placeholder="Enter your question here..." rows="4" [disabled]="isLoading"></textarea>
+    <button (click)="submitQuestion()" [disabled]="isLoading || !questionText.trim()">
+      {{ isLoading ? 'Asking...' : 'Ask' }}
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Loading...</p>
+  </div>
+
+  <div *ngIf="answerText && !isLoading" class="answer-area">
+    <h3>Answer:</h3>
+    <p [innerHTML]="answerText"></p> <!-- Using innerHTML if answer can have HTML, otherwise {{ answerText }} -->
+  </div>
+
+  <div *ngIf="errorText && !isLoading" class="error-area">
+    <h3>Error:</h3>
+    <p>{{ errorText }}</p>
+  </div>
+</div>

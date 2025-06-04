@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/angular-frontend", // Adjusted output path
+    "types": [
+      "jasmine"
+    ]
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts" // Will create this later
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}
