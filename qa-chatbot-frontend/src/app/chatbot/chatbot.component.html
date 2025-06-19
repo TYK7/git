@@ -1,0 +1,36 @@
+<mat-card class="chat-container-card">
+  <mat-card-header>
+    <mat-card-title>Chat with Document</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="message-area-card">
+    <mat-list>
+      <mat-list-item *ngFor="let message of messages"
+                     [ngClass]="{'user-message-item': message.sender === 'user', 'bot-message-item': message.sender === 'bot'}">
+        <div class="message-bubble-mat"
+             [ngClass]="{'user-bubble-mat': message.sender === 'user', 'bot-bubble-mat': message.sender === 'bot'}">
+          <p class="message-text-mat">{{ message.text }}</p>
+          <span class="message-timestamp-mat">{{ message.timestamp | date:'shortTime' }}</span>
+        </div>
+      </mat-list-item>
+      <mat-list-item *ngIf="isLoading" class="bot-message-item">
+         <div class="message-bubble-mat bot-bubble-mat">
+            <p class="message-text-mat"><i>Typing...</i></p>
+            <mat-progress-bar mode="indeterminate" *ngIf="isLoading" style="margin-top: 5px;"></mat-progress-bar>
+         </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-actions class="input-area-card">
+    <form [formGroup]="chatForm" (ngSubmit)="sendMessage()" style="display: flex; width: 100%;">
+      <mat-form-field appearance="outline" style="flex-grow: 1; margin-right: 8px;">
+        <mat-label>Type your question...</mat-label>
+        <input matInput formControlName="question" autocomplete="off">
+      </mat-form-field>
+      <button mat-fab color="primary" type="submit" [disabled]="chatForm.invalid || isLoading" aria-label="Send message">
+        <mat-icon>send</mat-icon>
+      </button>
+    </form>
+  </mat-card-actions>
+</mat-card>

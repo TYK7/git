@@ -1,0 +1,1 @@
+This is a sample document for the Q&A chatbot. It contains information about various topics. The AI should use this content to answer questions. Java is a programming language. Angular is a web framework.
